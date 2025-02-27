@@ -2,10 +2,39 @@
 <html>
     <head>
         <title>Mushroom Cloud Math</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <h1>Completionists Mushroom Cloud</h1>
         <p>Note: Check out <a href="mushroomcloudtheory.html">Mushroom Cloud Theory</a> before reading.</p>
+        <p>A <s>fun and interesting</s> guide to the math and setup of a mushroom cloud.</p>
+        <hr>
+        <p>
+            The Mushroom Cloud can be split into <s>3</s> 2 parts:<br>
+            <li>The swrily vortex part, lets call it 'A'.</li> 
+            <li>The shaft thingy, lets call it 'B'.</li> 
+            Now we can focus on each part separately and then glue em' together
+            later.
+        </p>
+        <h2>Part A: THE PILLAR OF SMOKE</h2>
+        <p>
+            This 'pillar' must acclomplish two things: curving up, and rising
+            up. This curve can be modeled quite simply really:
+            3^(2x-3)
+        </p>
+        <div class="imgcap">
+            <img src="assets/img/32x3.png" style="height: 25em;">
+            <p>Graph of the function. As you can tell the smoke particle(s)
+                would start off at a smooth rate and then basically go
+                vertical.
+            </p>
+        </div>
+        <p>And thats it! As in the basic motion is done. You dont want to have
+            to deal with the logistics of creating particles constantly to
+            keep the pillar going. Instead, create a variable like:
+        </p>
+        <div class="codecont">
+            <p><oc>private int </oc>elapsedTicks<wc>;</wc></p>
+        </div>
     </body>
 </html>

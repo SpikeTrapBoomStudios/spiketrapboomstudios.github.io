@@ -1,0 +1,45 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 3rem 3rem;
+}
+
+a {
+    color: orange;
+}
+
+.imgcap {
+    display: flex;
+    align-items: center;
+}
+
+.imgcap img {
+    margin-right: 2em;
+}
+
+.codecont {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1e1e1e;
+    color: #c969df;
+    padding: 15px 25px;
+    margin: 0;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 1em;
+    line-height: 1.5;
+    display: inline-block;
+  }
+  
+.codecont * {
+    padding: 0;
+    margin: 0;
+}
+
+oc {
+    color: orange;
+}
+
+wc {
+    color: white;
+}
