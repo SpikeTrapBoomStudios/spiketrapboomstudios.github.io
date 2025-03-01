@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: #121212;
     color: white;
     font-family: 'Courier New', Courier, monospace;
     margin: 3rem 3rem;
@@ -19,21 +19,9 @@ a {
 }
 
 .codecont {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #1e1e1e;
-    color: #c969df;
-    padding: 15px 25px;
-    margin: 0;
-    border-radius: 5px;
-    overflow-x: auto;
-    font-size: 1em;
-    line-height: 1.5;
-    display: inline-block;
-  }
-  
-.codecont * {
-    padding: 0;
-    margin: 0;
+    border-radius: 5px; 
+    font-size: 1.1em;
+    display: inline-block !important;
 }
 
 oc {
@@ -57,5 +45,5 @@ aqc {
 }
 
 gc {
-    color: rgb(40, 160, 40);
+    color: rgb(40, 160, 40); /*comments*/
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mushroom Cloud Part A</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
+    </head>
+    <body>
+        <h1>Part A: The Pillar of Smoke</h1>
+        <p>Note: After reading this, check out <a href="swirlygases.html">Part B: The Swirly Gases</a> for more details.</p>
+        <p>This guide outlines the mathematical model and setup for creating a mushroom cloud.</p>
+        <hr>
+
+        <p>
+            A mushroom cloud can be broken down into two main parts:
+            <ul>
+                <li>The pillar of smoke, which we'll call 'Part A'.</li>
+                <li>The swirling gases, which we'll call 'Part B'.</li>
+            </ul>
+            We'll first focus on Part A, and later combine it with Part B for the complete effect.
+        </p>
+
+        <h2>Part A: The Pillar of Smoke</h2>
+        <p>
+            The "pillar" of the mushroom cloud must achieve two things: it must curve upwards and rise. This curve can be modeled with the function:
+            <code>3^(2x - 3)</code>
+        </p>
+
+        <div class="imgcap">
+            <img src="assets/img/32x3.png" alt="Graph of the function" style="height: 25em;">
+            <p>This graph represents the function. As shown, the smoke particles start with a smooth curve, then eventually rise almost vertically.</p>
+        </div>
+
+        <p>
+            To simulate this, we need a variable that updates the value of <code>x</code> over time. This variable is called <code>elapsedTicks</code>, and it increments with each tick. 
+            We can use this value as the input to our function, which will give us the height of the particle at any given time. Here's an example:
+        </p>
+
+        <pre><code class="language-java codecont">
+private int elapsedTicks;
+        </code></pre>
+
+        <p>
+            This variable can be used as the 'x' value in the above function. I recommend adjusting the function and <code>elapsedTicks</code> to make the particle speed look smooth and consistent. Here's how I implemented it:
+        </p>
+
+        <pre><code class="language-java codecont">
+public void partA() {
+    // Convert elapsed ticks to seconds (20 ticks per second)
+    double timeInSeconds = (double) elapsedTicks / 20;
+
+    // Calculate particle height using the exponential function
+    double particleHeight = Math.pow(3, 2 * timeInSeconds - 3);
+    double previousParticleHeight = Math.pow(3, 2 * timeInSeconds - 3 - 0.1); // Offset by 1/10 for previous height
+
+    // Color interpolation values for red, green, and blue channels
+    float rStart = 115, rEnd = 255;
+    float gStart = 115, gEnd = 75;
+    float bStart = 115, bEnd = 0;
+
+    // Interpolate colors over time
+    float progress = (float) elapsedTicks / resetTick;
+    this.rCol = ((rStart + progress * (rEnd - rStart)) / 255);
+    this.gCol = ((gStart + progress * (gEnd - gStart)) / 255);
+    this.bCol = ((bStart + progress * (bEnd - bStart)) / 255);
+
+    // Calculate movement based on height change
+    double deltaX = 1.0 / 20.0;
+    double deltaY = particleHeight - previousParticleHeight;
+    double magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    // Normalize movement
+    deltaX = (deltaX / magnitude) * 0.5;
+    deltaY = (deltaY / magnitude) * 0.5;
+
+    // Update particle position along the path
+    py += deltaY;
+    pz -= deltaX;
+
+    // Relative position calculations for transformation
+    double relativeX = px - ox;
+    double relativeY = py - oy;
+    double relativeZ = pz - oz;
+
+    // Apply rotation transformation (around x-axis)
+    double rotatedX = relativeX * Math.cos(xRot) - relativeZ * Math.sin(xRot);
+    double rotatedZ = relativeX * Math.sin(xRot) + relativeZ * Math.cos(xRot);
+
+    // Apply additional offsets
+    rotatedX += offX;
+    rotatedZ += offZ;
+
+    // Set the final particle position
+    this.setPos(ox + rotatedX, oy + relativeY, oz + rotatedZ);
+}
+        </code></pre>
+
+        <h3>Explanation:</h3>
+        <p>
+            In this implementation, we first convert <code>elapsedTicks</code> into seconds (since there are 20 ticks per second), and then plug that value into the formula to determine the particle's height at that point in time. The value of <code>elapsedTicks</code> increases over time, giving us a smooth transition for the particle’s movement along the curve.
+        </p>
+        <p>
+            One challenge with this approach is that the particle's movement speed increases as the graph's slope becomes steeper. To address this, we calculate the change in the x and y values (deltaX and deltaY), and normalize them by dividing by the magnitude of the change. The magnitude is the square root of the sum of the squares of the x and y changes. This ensures that the particle moves smoothly regardless of the steepness of the curve.
+        </p>
+
+        <hr>
+        <h3>Color Transition</h3>
+        <p>
+            As the smoke particle rises from the bottom of the pillar to the top, it should transition from gray to orange. To achieve this, we use linear interpolation. The formula for linear interpolation is:
+            <br>
+            <code>y = y0 + ((x - x0) / (x1 - x0)) * (y1 - y0)</code>
+            <br>
+            This formula takes a start value (x0, y0) and an end value (x1, y1), and allows us to determine any value in between. By applying this to the red, green, and blue color channels, we can smoothly transition the particle color from gray to orange as it rises.
+        </p>
+
+        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
+</html>
