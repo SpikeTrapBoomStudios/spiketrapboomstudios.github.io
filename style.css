@@ -37,9 +37,25 @@ a {
 }
 
 oc {
-    color: orange;
+    color: orange; /*Identifiers and types, private,public,int,float,etc.*/
 }
 
 wc {
-    color: white;
+    color: white; /*semicolons and method variable declarations, math operators*/
+}
+
+pc {
+    color: #c969df; /*class variable declarations*/
+}
+
+bc {
+    color: rgb(52, 100, 235); /*method names*/
+}
+
+aqc {
+    color: aqua; /*numbers and variable values*/
+}
+
+gc {
+    color: rgb(40, 160, 40);
 }
