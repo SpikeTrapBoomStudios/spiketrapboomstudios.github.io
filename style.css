@@ -3,6 +3,7 @@ body {
     color: white;
     font-family: 'Courier New', Courier, monospace;
     margin: 3rem 3rem;
+    line-height: 1.5em;
 }
 
 a {
@@ -21,7 +22,6 @@ a {
 .codecont {
     border-radius: 5px; 
     font-size: 1.1em;
-    display: inline-block !important;
 }
 
 oc {
