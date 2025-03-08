@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
     </head>
     <body>
+        <a href="index.html">Home</a>
         <h1>Part B: The Swirling Gases</h1>
         <p>Note: Before diving in, check out <a href="smokepillar.html">Part A: The Smoke Pillar</a> for context.</p>
         <p>This guide lays out the mathematical setup for creating a mushroom cloud. Let’s get swirling.</p>
@@ -55,17 +56,15 @@
             </p>
         </div>
 
-        <p>If you’re anything like me, you’re probably staring at this wondering how the hell to implement it. And if you’re not, congrats, you’re smarter than me. But for the rest of us mortals, here’s some code from my mod that actually makes it work:</p>
+        <p>Now this is a lot of confusing math, so if you learn by example or by good ol' copy-paste, here you go:</p>
         <pre>
             <code class="language-java codecont">
 public void partB() {
-    // Increment the swirl angle and keep it within 0 to 2π range
-    angle += swirlInc;
-    if (angle >= 2 * Math.PI) angle -= 2 * Math.PI;
+    swirlAngle += swirlIncrement;
+    if (swirlAngle >= 2 * Math.PI) swirlAngle -= 2 * Math.PI;
 
-    // Determine color interpolation based on the angle range
     float rStart, rEnd, gStart, gEnd, bStart, bEnd;
-    if (angle < Math.PI) {
+    if (swirlAngle < Math.PI) {
         rStart = 255; rEnd = 115;
         gStart = 75; gEnd = 115;
         bStart = 0; bEnd = 115;
@@ -74,35 +73,21 @@ public void partB() {
         gStart = 115; gEnd = 75;
         bStart = 115; bEnd = 0;
     }
+    float progress = (float) ((swirlAngle % Math.PI) / Math.PI);
+    this.rCol = Math2.interpolateColor(rStart,rEnd,progress);
+    this.gCol = Math2.interpolateColor(gStart,gEnd,progress);
+    this.bCol = Math2.interpolateColor(bStart,bEnd,progress);
 
-    // Interpolate color based on the angle
-    float progress = (float) ((angle % Math.PI) / Math.PI);
-    this.rCol = (rStart + progress * (rEnd - rStart)) / 255;
-    this.gCol = (gStart + progress * (gEnd - gStart)) / 255;
-    this.bCol = (bStart + progress * (bEnd - bStart)) / 255;
+    double verticalMovement = Math.cos(swirlAngle) * swirlRadius;
+    double horizontalMovement = Math.sin(swirlAngle) * swirlRadius * 1.5;
+    localY += verticalMovement;
+    localZ += horizontalMovement;
+    double relativeX = localX - originX;
+    double relativeY = localY - originY;
+    double relativeZ = localZ - originZ;
 
-    // Calculate movement based on swirl motion
-    double verticalMovement = Math.cos(angle) * swirlRadius;
-    double horizontalMovement = Math.sin(angle) * swirlRadius * 1.5; // Slightly stretched swirl in z-direction
-
-    py += verticalMovement;
-    pz += horizontalMovement;
-
-    // Compute relative position adjustments
-    double relativeX = px - ox;
-    double relativeY = py - oy;
-    double relativeZ = pz - oz;
-
-    // Apply rotation transformation (around x-axis)
-    double rotatedX = relativeX * Math.cos(xRot) - relativeZ * Math.sin(xRot);
-    double rotatedZ = relativeX * Math.sin(xRot) + relativeZ * Math.cos(xRot);
-
-    // Apply additional offsets
-    rotatedX += offX;
-    rotatedZ += offZ;
-
-    // Set final particle position
-    this.setPos(ox + rotatedX, oy + relativeY, oz + rotatedZ);
+    Vector2D rotatedXZ = Math2.rotateCoordinate2D(relativeX, relativeZ, rotationAngle).offset(offsetX, offsetZ).offset(originX, originZ);
+    this.setPos(rotatedXZ.x, originY + relativeY, rotatedXZ.y);
 }
             </code>
         </pre>

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
     </head>
     <body>
+        <a href="index.html">Home</a>
         <h1>Part A: The Pillar of Smoke</h1>
         <p>Note: After reading this, check out <a href="swirlygases.html">Part B: The Swirly Gases</a> for more details.</p>
         <p>This guide outlines the mathematical model and setup for creating a mushroom cloud.</p>
@@ -48,52 +49,35 @@ private int elapsedTicks;
 
         <pre><code class="language-java codecont">
 public void partA() {
-    // Convert elapsed ticks to seconds (20 ticks per second)
-    double timeInSeconds = (double) elapsedTicks / 20;
-
-    // Calculate particle height using the exponential function
+    double timeInSeconds = (double) tickCounter / 20;
     double particleHeight = Math.pow(3, 2 * timeInSeconds - 3);
-    double previousParticleHeight = Math.pow(3, 2 * timeInSeconds - 3 - 0.1); // Offset by 1/10 for previous height
+    double previousParticleHeight = Math.pow(3, 2 * timeInSeconds - 3 - 0.1);
 
-    // Color interpolation values for red, green, and blue channels
     float rStart = 115, rEnd = 255;
     float gStart = 115, gEnd = 75;
     float bStart = 115, bEnd = 0;
+    float progress = (float) tickCounter / VARIANT1_RESET_TICK;
+    this.rCol = Math2.interpolateColor(rStart,rEnd,progress);
+    this.gCol = Math2.interpolateColor(gStart,gEnd,progress);
+    this.bCol = Math2.interpolateColor(bStart,bEnd,progress);
 
-    // Interpolate colors over time
-    float progress = (float) elapsedTicks / resetTick;
-    this.rCol = ((rStart + progress * (rEnd - rStart)) / 255);
-    this.gCol = ((gStart + progress * (gEnd - gStart)) / 255);
-    this.bCol = ((bStart + progress * (bEnd - bStart)) / 255);
-
-    // Calculate movement based on height change
     double deltaX = 1.0 / 20.0;
     double deltaY = particleHeight - previousParticleHeight;
     double magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    // Normalize movement
     deltaX = (deltaX / magnitude) * 0.5;
     deltaY = (deltaY / magnitude) * 0.5;
 
-    // Update particle position along the path
-    py += deltaY;
-    pz -= deltaX;
+    localY += deltaY;
+    localZ -= deltaX;
+    double relativeX = localX - originX;
+    double relativeY = localY - originY;
+    double relativeZ = localZ - originZ;
+    double rotatedX = relativeX * Math.cos(rotationAngle) - relativeZ * Math.sin(rotationAngle);
+    double rotatedZ = relativeX * Math.sin(rotationAngle) + relativeZ * Math.cos(rotationAngle);
+    rotatedX += offsetX;
+    rotatedZ += offsetZ;
 
-    // Relative position calculations for transformation
-    double relativeX = px - ox;
-    double relativeY = py - oy;
-    double relativeZ = pz - oz;
-
-    // Apply rotation transformation (around x-axis)
-    double rotatedX = relativeX * Math.cos(xRot) - relativeZ * Math.sin(xRot);
-    double rotatedZ = relativeX * Math.sin(xRot) + relativeZ * Math.cos(xRot);
-
-    // Apply additional offsets
-    rotatedX += offX;
-    rotatedZ += offZ;
-
-    // Set the final particle position
-    this.setPos(ox + rotatedX, oy + relativeY, oz + rotatedZ);
+    this.setPos(originX + rotatedX, originY + relativeY, originZ + rotatedZ);
 }
         </code></pre>
 
