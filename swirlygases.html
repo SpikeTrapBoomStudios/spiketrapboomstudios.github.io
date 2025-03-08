@@ -59,27 +59,29 @@
         <p>Now this is a lot of confusing math, so if you learn by example or by good ol' copy-paste, here you go:</p>
         <pre>
             <code class="language-java codecont">
-public void partA() {
-    double timeInSeconds = (double) tickCounter / 20;
-    double particleHeight = Math.pow(3, 2 * timeInSeconds - 3);
-    double previousParticleHeight = Math.pow(3, 2 * timeInSeconds - 3 - 0.1);
+public void partB() {
+    swirlAngle += swirlIncrement;
+    if (swirlAngle >= 2 * Math.PI) swirlAngle -= 2 * Math.PI;
 
-    float rStart = 115, rEnd = 255;
-    float gStart = 115, gEnd = 75;
-    float bStart = 115, bEnd = 0;
-    float progress = (float) tickCounter / VARIANT1_RESET_TICK;
+    float rStart, rEnd, gStart, gEnd, bStart, bEnd;
+    if (swirlAngle < Math.PI) {
+        rStart = 255; rEnd = 115;
+        gStart = 75; gEnd = 115;
+        bStart = 0; bEnd = 115;
+    } else {
+        rStart = 125; rEnd = 255;
+        gStart = 115; gEnd = 75;
+        bStart = 115; bEnd = 0;
+    }
+    float progress = (float) ((swirlAngle % Math.PI) / Math.PI);
     this.rCol = Math2.interpolateColor(rStart,rEnd,progress);
     this.gCol = Math2.interpolateColor(gStart,gEnd,progress);
     this.bCol = Math2.interpolateColor(bStart,bEnd,progress);
 
-    double deltaX = 1.0 / 20.0;
-    double deltaY = particleHeight - previousParticleHeight;
-    double magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-    deltaX = (deltaX / magnitude) * 0.5;
-    deltaY = (deltaY / magnitude) * 0.5;
-
-    localY += deltaY;
-    localZ -= deltaX;
+    double verticalMovement = Math.cos(swirlAngle) * swirlRadius;
+    double horizontalMovement = Math.sin(swirlAngle) * swirlRadius * 1.5;
+    localY += verticalMovement;
+    localZ += horizontalMovement;
     double relativeX = localX - originX;
     double relativeY = localY - originY;
     double relativeZ = localZ - originZ;
