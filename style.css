@@ -2,7 +2,7 @@ body {
     background-color: #121212;
     color: white;
     font-family: 'Courier New', Courier, monospace;
-    margin: 3rem 3rem;
+    margin: 3rem;
     line-height: 1.5em;
 }
 
@@ -17,33 +17,122 @@ a {
 
 .imgcap img {
     margin-right: 2em;
+    max-width: 100%;
+    height: auto;
 }
 
 .codecont {
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 1.1em;
 }
 
-oc {
-    color: orange; /*Identifiers and types, private,public,int,float,etc.*/
+.devblog-container {
+    width: 100%;
+    margin: 0 auto;
 }
 
-wc {
-    color: white; /*semicolons and method variable declarations, math operators*/
+.devblog-container a {
+    text-decoration: none;
+    color: white;
 }
 
-pc {
-    color: #c969df; /*class variable declarations*/
+.devblog-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    background-color: #363636;
 }
 
-bc {
-    color: rgb(52, 100, 235); /*method names*/
+.devblog-item img {
+    border-radius: 10px;
+    width: 80px;
+    height: auto;
+    flex-shrink: 0;
+    margin: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 
-aqc {
-    color: aqua; /*numbers and variable values*/
+.devblog-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
 }
 
-gc {
-    color: rgb(40, 160, 40); /*comments*/
+.devblog-text h1 {
+    margin: 0.5rem 0 0.25rem 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.devblog-text hr {
+    border: none;
+    width: 75%;
+    height: 2px;
+    background-color: white;
+    margin: 0.25rem 0 0.5rem 0;
+}
+
+.devblog-text p {
+    margin: 0.5rem 0 0.5rem 0;
+    font-size: 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    body {
+        margin: 2rem 1rem;
+    }
+    h1, h2, h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        margin: 1rem;
+    }
+    .devblog-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .devblog-item img {
+        align-self: center;
+        width: 30%;
+        margin: 0 0 0.5rem 0;
+    }
+    .devblog-text h1 {
+        font-size: 1.25rem;
+    }
+    .devblog-text p {
+        font-size: 0.9rem;
+    }
+}
+
+.panel {
+    background-color: #363636;
+    width: auto;
+    border-radius: 4px;
+    padding: 20px 0px 40px 20px;
+}
+
+.panel h2 {
+    font-size: 2em;
+}
+
+.panel li {
+    margin: 20px 0px;
+    font-size: 1.5em;
+}
+
+.panel * {
+    margin: 0;
 }
