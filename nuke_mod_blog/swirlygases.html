@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=dev_initial-scale=1.0">
         <title>Mushroom Cloud Part B</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
     </head>
     <body>
-        <a href="index.html">Home</a>
+        <a href="homepage.html">Back</a>
         <h1>Part B: The Swirling Gases</h1>
         <p>Note: Before diving in, check out <a href="smokepillar.html">Part A: The Smoke Pillar</a> for context.</p>
         <p>This guide lays out the mathematical setup for creating a mushroom cloud. Let’s get swirling.</p>
@@ -30,19 +30,19 @@
         <p>
             Alright, time to model the swirly gases. Here’s a diagram to visualize what we’re dealing with:
         </p>
-        <img src="assets/img/swirlywirly.png" style="width: 50em;">
+        <img src="../assets/img/swirlywirly.png" style="width: 50em;">
         <p>
             We use sine and cosine to calculate how much each particle moves. And since describing math with words alone is painful, here’s more diagrams. Hooray!
         </p>
         <div class="imgcap">
-            <img src="assets/img/simplesincosdisp.png" style="width: 30em;">
+            <img src="../assets/img/simplesincosdisp.png" style="width: 30em;">
             <p>
                 By shifting a particle by (sin(angle), cos(angle)) as angle increases, we get a loop. At first, it looks more like a square than a circle, but don’t panic-just decrease the angle increment.
                 Also, if you’re wondering why x is offset by sin and y by cos (instead of the usual way), it’s so the particles move outward and then back in, meeting at a single point (which we can later tweak into a torus!).
             </p>
         </div>
         <div class="imgcap">
-            <img src="assets/img/graph.png" style="width: 30em;">
+            <img src="../assets/img/graph.png" style="width: 30em;">
             <p>
                 Here’s what different increment values look like. Each set has one less visible point than labeled due to the 0→2π loop. More points = smoother circle.
                 
