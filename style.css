@@ -118,19 +118,25 @@ img {
 }
 
 .panel {
-    background-color: #363636;
+    background-color: #333333;
     width: auto;
-    border-radius: 4px;
-    padding: 20px 0px 40px 20px;
+    border: 2px white solid;
+    border-radius: 10px;
+    padding: 1.5rem 1.5rem 1.5rem .2rem;
+    margin-bottom: 5rem;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 1);
 }
 
 .panel h2 {
-    font-size: 2em;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    margin-left: 1rem;
 }
 
 .panel li {
     margin: 20px 0px;
-    font-size: 1.5em;
+    margin-left: .6rem;
+    font-size: 1.2em;
 }
 
 .panel * {
