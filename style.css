@@ -155,3 +155,11 @@ img {
 .panel * {
     margin: 0;
 }
+
+.attachment {
+    display: inline-block;
+    background-color: #333333;
+    padding: 1em;
+    border-radius: 10px;
+    margin-top: 20px;
+}
