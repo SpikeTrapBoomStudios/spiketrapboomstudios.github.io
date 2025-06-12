@@ -8,38 +8,43 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs2015.min.css">
     </head>
     <body>
-        <a href="homepage.html">Back</a>
-        <h1>Extras: Rotation Matrix</h1>
-        <p>This page is a pre-requisuite sorta thing for math used throughout the other stuff.</p>
-        <hr>
+        <div class="blog-post">
+            <a href="homepage.html">Back</a>
+            <h1>Extras: Rotation Matrix</h1>
+            <p>This page is a prerequisite sort of thing for math used throughout the other stuff.</p>
+            <hr>
 
-        <h2>I: Rotation Matrix</h2>
-        <p>
-            Rotation Matricies are a fun thing that make a point go from one place to another place based on an axis and a rotation angle.
-            Look at this diagram too see what I mean:
-        </p>
-
-        <div class="imgcap">
-            <img src="../assets/img/graph2.png">
+            <h2>I. Rotation Matrix</h2>
             <p>
-                What Ive done is visualized the rotation using a building. The red building is the initial position (3,2). After a rotation by π/2, we arrive at the
-                coordinate (-2,3). This is done using the rotation matrix:<br>
-                <span style="white-space: nowrap;"><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e02da33f45679713d15de997449a76df48efb282" style="display: inline; height: 4em; filter: invert();">(Wikimedia)</span>
-                Or rather, X'=X*cos(angle)-y*sin(angle) and Y'=X*sin(angle)+y*cos(angle)
+                Rotation matrices are a fun thing that make a point go from one place to another based on an axis and a rotation angle.
+                Look at this diagram to see what I mean:
             </p>
+
+            <div class="imgcap">
+                <img src="../assets/img/graph2.png">
+                <p>
+                    What I've done is visualized the rotation using a building. The red building is the initial position (3,2). After a rotation by π/2, we arrive at the
+                    coordinate (-2,3). This is done using the rotation matrix:<br>
+                    <span style="white-space: nowrap;">
+                        <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e02da33f45679713d15de997449a76df48efb282" style="display: inline; height: 4em; filter: invert();"><br>(Wikimedia)<br>
+                    </span>
+                    Or rather,<br> X' = X * cos(angle) - Y * sin(angle) and Y' = X * sin(angle) + Y * cos(angle).
+                </p>
+            </div>
+
+            <h2>II. Sin and Cos Basics</h2>
+            <p>
+                Sin and Cos are two trigonometric functions that, when you're dealing with circles, are the best way to do stuff. It's not too complex:
+                just think of a circle with a radius of 1, aka a unit circle. Now take any angle (in radians) that starts pointing at (1,0) and then goes counterclockwise.
+                Sin will return the Y value while Cos will return the X value.
+            </p>
+
+            <img src="../assets/img/unitcircle.png" style="filter: invert(); width: 50em;">
+
+            <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+            <script>
+                hljs.highlightAll();
+            </script>
         </div>
-
-        <h2>II: Sin and Cos Basics</h2>
-        <p>
-            Sin and Cos are two trigonometric functions, that when you are dealing with circles, it is the best way to do stuff. Its not too complex,
-            just think of a circle with a radius of 1, aka a unit circle. Now take any angle (in radians) that starts pointing at (1,0) and then goes counter clockwise,
-            and Sin will return the Y-Value while Cos will return the X-Value.
-        </p>
-        <img src="../assets/img/unitcircle.png" style="filter: invert(); width: 50em;">
-
-        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
-        <script>
-            hljs.highlightAll();
-        </script>
     </body>
 </html>

@@ -163,3 +163,61 @@ img {
     border-radius: 10px;
     margin-top: 20px;
 }
+
+.blog-post {
+    background-color: #1e1e1e;
+    padding: 2rem 3rem;
+    max-width: 60vw;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #E0E0E0;
+    line-height: 1.8em;
+}
+
+.blog-post a {
+    color: #ffa500;
+    text-decoration: none;
+}
+
+.blog-post h1, 
+.blog-post h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.blog-post p {
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+}
+
+.blog-post code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #2e2e2e;
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+}
+
+.blog-post hr {
+    border: none;
+    height: 2px;
+    background-color: #444;
+    margin: 2rem 0;
+}
+
+.blog-post .attachment {
+    display: inline-block;
+    background-color: #333333;
+    padding: 1em;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .blog-post {
+        padding: 1.5rem 1rem;
+        max-width: 80vw;
+    }
+}
