@@ -1,0 +1,5 @@
+{
+  "loader": "forge:obj",
+  "model": "spikesnukes:models/block/fatman_r1.obj",
+  "flip-v": true
+}
