@@ -13,6 +13,8 @@ a {
 .imgcap {
     display: flex;
     align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .imgcap img {
@@ -107,6 +109,10 @@ img {
     h1, h2, h3 {
         font-size: 1.75rem;
     }
+    .imgcap {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 @media (max-width: 480px) {
@@ -170,9 +176,10 @@ img {
 
 .blog-post {
     background-color: #1e1e1e;
-    padding: 2rem 3rem;
-    max-width: 60vw;
+    width: 100%;
+    max-width: 56rem;
     margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -222,6 +229,6 @@ img {
 @media (max-width: 768px) {
     .blog-post {
         padding: 1.5rem 1rem;
-        max-width: 80vw;
+        max-width: 100%;
     }
 }
