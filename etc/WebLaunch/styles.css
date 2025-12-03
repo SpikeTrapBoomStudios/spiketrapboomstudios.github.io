@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base theme */
+:root {
+    --bg: #101010;
+    --bg-elevated: #181818;
+    --bg-elevated-soft: #1f1f1f;
+    --border: #262626;
+    --border-soft: #2f2f2f;
+    --text: #f5f5f5;
+    --text-muted: #9a9a9a;
+    --accent: #5ac8a8;
+    --accent-soft: #3b7463;
+    --transition-fast: 0.12s ease-out;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, Menlo, Monaco, Consolas, "SF Mono", "JetBrains Mono", monospace;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding: 28px;
+    font-family: var(--font-main);
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* Layout wrapper */
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+/* Columns */
+.columns {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Category block */
+.category {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 14px;
+    background-color: var(--bg-elevated);
+    border: 1px solid var(--border);
+}
+
+/* Category title */
+.category h2 {
+    margin-bottom: 10px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Links container */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Individual link */
+.links a {
+    display: flex;
+    align-items: center;        /* vertical center */
+    justify-content: flex-start;/* left align text */
+    padding: 8px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--text);
+    background-color: var(--bg-elevated-soft);
+    border: 1px solid var(--border-soft);
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+/* Hover: subtle, no movement */
+.links a:hover {
+    background-color: #242424;
+    border-color: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* Active: minimal feedback */
+.links a:active {
+    background-color: #202020;
+    border-color: var(--accent);
+}
+
+/* Keyboard focus */
+.links a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.links a:hover {
+    transform: scale(1.02);
+}
+
+.links a:hover::after {
+    font-size: 16px;
+}
+
+.links a::after {
+    content: "<";
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+}
